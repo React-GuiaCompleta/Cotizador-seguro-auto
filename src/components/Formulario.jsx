@@ -1,7 +1,13 @@
 import { Fragment } from "react";
 import { MARCAS, YEARS, PLANES } from "./constants";
+import useCotizador from "./hooks/useCotizador";
 
 const Formulario = () => {
+    // ya que handleChangeDatos es un objeto importamos 
+    // la funcion handleChangeDatos = y manda a llamar
+    // al hook y lea los datos del context y nos retorne
+    // esa funcion 
+    const { handleChangeDatos, datos } = useCotizador()
     return (
         <>
             <form>
@@ -13,9 +19,11 @@ const Formulario = () => {
                     </label>
                     <select
                         name="marca"
-                        // w-full es width de 100%, p-3 es el ancho de la caja
-                        // border dibuja una linea gris al rededor de la caja
-                        className="w-full p-3 bg-white border border-gray-200">
+                        className="w-full p-3 bg-white border border-gray-200"
+                        onChange={e => handleChangeDatos(e)}
+                        // 11
+                        value={datos.marca}
+                    >
                         <option value="">-- Selecciona marca --</option>
                         {/* Iteramos MARCAS para poder extraer las marcas y que se muestren
                         se guardan en la variable marca */}
@@ -37,7 +45,11 @@ const Formulario = () => {
                     </label>
                     <select
                         name="year"
-                        className="w-full p-3 bg-white border border-gray-200">
+                        className="w-full p-3 bg-white border border-gray-200"
+                        onChange={e => handleChangeDatos(e)}
+                        // 12
+                        value={datos.year}
+                    >
                         <option value="">-- Selecciona año --</option>
                         {YEARS.map((year) => (
                             <option key={year}
@@ -64,6 +76,8 @@ const Formulario = () => {
                                     type="radio"
                                     name="plan"
                                     value={plan.id}
+                                    //6
+                                    onChange={e => handleChangeDatos(e)}
                                 />
                             </Fragment>
                         ))}
