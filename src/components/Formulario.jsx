@@ -1,16 +1,34 @@
 import { Fragment } from "react";
 import { MARCAS, YEARS, PLANES } from "./constants";
 import useCotizador from "./hooks/useCotizador";
+import Error from "./Error";
 
 const Formulario = () => {
     // ya que handleChangeDatos es un objeto importamos 
     // la funcion handleChangeDatos = y manda a llamar
     // al hook y lea los datos del context y nos retorne
     // esa funcion 
-    const { handleChangeDatos, datos } = useCotizador()
+    const { handleChangeDatos, datos, error, setError } = useCotizador()
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        // Revisa los valores de un objeto
+        // si datos tiene un valor vacio que diga error
+        if (Object.values(datos).includes('')) {
+            // console.error('error, campos obligatorios')
+            setError('Todos los campos son obligatorios')
+            return
+        }
+        // Sino limpiamos quitamos la alerta
+        setError('')
+    }
     return (
         <>
-            <form>
+        {/* en caso de que error tenga algo entonces muestre el componente */}
+        {error && <Error/>}
+            <form
+                onSubmit={handleSubmit}
+            >
                 {/* margin separa el campo actual con los que vienen mas abajo */}
                 <div className="my-5">
                     {/* Block toma todo el ancho de pantalla */}

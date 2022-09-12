@@ -10,6 +10,8 @@ const CotizadorProvider = ({ children }) => {
         year: '',
         plan: ''
     })
+
+    const [error, setError] = useState('')
     // 1 Funcion que actualiza el state, toma el evento e
     const handleChangeDatos = e => {
         // 8
@@ -26,7 +28,9 @@ const CotizadorProvider = ({ children }) => {
                 // 9
                 datos,
                 //
-                handleChangeDatos
+                handleChangeDatos,
+                error,
+                setError
             }}
         >
             {children}
