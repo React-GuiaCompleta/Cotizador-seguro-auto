@@ -8,7 +8,8 @@ const Formulario = () => {
     // la funcion handleChangeDatos = y manda a llamar
     // al hook y lea los datos del context y nos retorne
     // esa funcion 
-    const { handleChangeDatos, datos, error, setError } = useCotizador()
+    // 1.2 importamos cotizadorSeguro
+    const { handleChangeDatos, datos, error, setError, cotizadorSeguro } = useCotizador()
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -21,11 +22,13 @@ const Formulario = () => {
         }
         // Sino limpiamos quitamos la alerta
         setError('')
+        // 1.3 la mandamos a llamar
+        cotizadorSeguro()
     }
     return (
         <>
-        {/* en caso de que error tenga algo entonces muestre el componente */}
-        {error && <Error/>}
+            {/* en caso de que error tenga algo entonces muestre el componente */}
+            {error && <Error />}
             <form
                 onSubmit={handleSubmit}
             >
@@ -39,7 +42,6 @@ const Formulario = () => {
                         name="marca"
                         className="w-full p-3 bg-white border border-gray-200"
                         onChange={e => handleChangeDatos(e)}
-                        // 11
                         value={datos.marca}
                     >
                         <option value="">-- Selecciona marca --</option>
@@ -65,7 +67,6 @@ const Formulario = () => {
                         name="year"
                         className="w-full p-3 bg-white border border-gray-200"
                         onChange={e => handleChangeDatos(e)}
-                        // 12
                         value={datos.year}
                     >
                         <option value="">-- Selecciona año --</option>
@@ -94,7 +95,6 @@ const Formulario = () => {
                                     type="radio"
                                     name="plan"
                                     value={plan.id}
-                                    //6
                                     onChange={e => handleChangeDatos(e)}
                                 />
                             </Fragment>
