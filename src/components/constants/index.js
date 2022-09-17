@@ -22,3 +22,4 @@ export const PLANES = [
   { id: 1, nombre: "Básico" },
   { id: 2, nombre: "Completo" },
 ];
+

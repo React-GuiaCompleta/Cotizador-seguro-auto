@@ -8,7 +8,7 @@ const Formulario = () => {
     // la funcion handleChangeDatos = y manda a llamar
     // al hook y lea los datos del context y nos retorne
     // esa funcion 
-    // 1.2 importamos cotizadorSeguro
+    // importamos cotizadorSeguro
     const { handleChangeDatos, datos, error, setError, cotizadorSeguro } = useCotizador()
 
     const handleSubmit = e => {
@@ -22,7 +22,7 @@ const Formulario = () => {
         }
         // Sino limpiamos quitamos la alerta
         setError('')
-        // 1.3 la mandamos a llamar
+        //la mandamos a llamar
         cotizadorSeguro()
     }
     return (
@@ -113,3 +113,4 @@ const Formulario = () => {
 }
 
 export default Formulario;
+
